@@ -50,17 +50,8 @@ jobs:
       - name: Update Image Tag in ibank-minikube-gitops
         run: |
           cd ibank-minikube-gitops
-          pwd
-          ls -l
           FILE="env/local/gateway-service-values.yaml"
-
-          echo "Before:"
-          cat "$FILE"
-
           sed -i.bak "s|^ *tag:.*|  tag: \"${IMAGE_TAG}\"|g" "$FILE"
-
-          echo "After:"
-          cat "$FILE"
 
       - name: Commit & Push GitOps Changes
         run: |
@@ -69,5 +60,5 @@ jobs:
           git config user.email "github-actions@github.com"
           git add env/local/gateway-service-values.yaml
           git commit -m "gateway-service(local): deploy ${IMAGE_TAG}" || exit 0
-          git push origin main
+          git push
       
