@@ -1,0 +1,27 @@
+name: gateway-service -> stage
+
+on:
+  push:
+    branches:
+      - "release/**"
+
+concurrency:
+  group: gateway-service-stage
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    uses: techxus/ibank-gitops-templates/.github/workflows/deploy.yml@master
+    with:
+      service_name: gateway-service
+      docker_image: techxus/gateway-service
+      gitops_repo: techxus/ibank-minikube-gitops
+      gitops_branch: master
+      values_file: env/stage/gateway-service-values.yaml
+      environment: stage
+      java_version: "17"
+      maven_args: "-DskipTests"
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      GITOPS_REPO_PAT: ${{ secrets.GITOPS_REPO_PAT }}
