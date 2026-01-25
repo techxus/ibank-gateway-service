@@ -2,7 +2,8 @@ name: gateway-service -> local (feature branch)
 
 on:
   push:
-    branches: ["develop"]
+    branches:
+      - "feature/**"
 
 concurrency:
   group: gateway-service-local
