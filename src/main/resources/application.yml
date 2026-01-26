@@ -9,13 +9,26 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,prometheus,flyway,env
   endpoint:
     health:
       probes:
         enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  tracing:
+    sampling:
+      probability: 1.0   # 100% for demo; lower in prod
+    otlp:
+      tracing:
+        endpoint: http://tempo.tracing.svc.cluster.local:4318
   health:
     livenessState:
       enabled: true
     readinessState:
       enabled: true
+  server:
+    port: ${server.port}
