@@ -9,12 +9,14 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus,flyway,env
+        include: health,info,prometheus,flyway,env,gateway
   endpoint:
     health:
       probes:
         enabled: true
     prometheus:
+      enabled: true
+    gateway:
       enabled: true
   metrics:
     tags:
