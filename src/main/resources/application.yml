@@ -21,7 +21,7 @@ management:
       application: ${spring.application.name}
   tracing:
     sampling:
-      probability: 1.0   # 100% for demo; lower in prod
+      probability: 1.0
     otlp:
       tracing:
         endpoint: http://tempo.tracing.svc.cluster.local:4318
