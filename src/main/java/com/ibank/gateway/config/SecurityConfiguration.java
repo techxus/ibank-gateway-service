@@ -16,7 +16,8 @@ public class SecurityConfiguration {
                     .pathMatchers(
                             "/actuator/health/**",
                             "/api/v1/user/actuator/health/**",
-                            "/api/v1/notification/actuator/health/**"
+                            "/api/v1/notification/actuator/health/**",
+                            "/api/v1/report/actuator/health/**"
                     ).permitAll()
                     .anyExchange().permitAll()   // for now (we’ll lock down later)
             )
