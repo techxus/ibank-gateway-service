@@ -4,6 +4,10 @@ on:
   push:
     branches: ["develop"]
 
+permissions:
+  contents: read
+  packages: read
+
 concurrency:
   group: gateway-service-dev
   cancel-in-progress: true
