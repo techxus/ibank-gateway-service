@@ -52,7 +52,7 @@
         <dependency>
             <groupId>com.ibank</groupId>
             <artifactId>ibank-model</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.5</version>
         </dependency>
 
         <!-- Reactive Web (Netty) required by Spring Cloud Gateway -->
