@@ -21,16 +21,20 @@
 
     <properties>
         <java.version>17</java.version>
-
-        <!-- ✅ pin your common version here -->
         <ibank.common.version>1.0.5</ibank.common.version>
-
-        <!-- optional but nice for CI -->
         <maven.compiler.release>${java.version}</maven.compiler.release>
-
-        <!-- Spring Cloud BOM for Gateway -->
         <spring-cloud.version>2023.0.6</spring-cloud.version>
     </properties>
+
+    <!-- ✅ REQUIRED: tell Maven where to find com.ibank artifacts -->
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/techxus/ibank-common</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
 
     <!-- ✅ Import ibank-parent as a BOM (dependencyManagement only) -->
     <dependencyManagement>
