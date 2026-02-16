@@ -11,30 +11,37 @@
     <name>gateway-service</name>
     <packaging>jar</packaging>
 
-    <!-- Inherit Spring Boot version, Java version, plugins, and shared versions from ibank-parent -->
+    <!-- ✅ Use Spring Boot as parent (from Maven Central) -->
     <parent>
-        <groupId>com.ibank</groupId>
-        <artifactId>ibank-parent</artifactId>
-        <version>1.0.0</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.1</version>
         <relativePath/>
     </parent>
 
-    <repositories>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/techxus/ibank-common</url>
-            <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-    </repositories>
-
     <properties>
+        <java.version>17</java.version>
+
+        <!-- ✅ pin your common version here -->
+        <ibank.common.version>1.0.5</ibank.common.version>
+
+        <!-- optional but nice for CI -->
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+
         <!-- Spring Cloud BOM for Gateway -->
         <spring-cloud.version>2023.0.6</spring-cloud.version>
     </properties>
 
+    <!-- ✅ Import ibank-parent as a BOM (dependencyManagement only) -->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.ibank</groupId>
+                <artifactId>ibank-parent</artifactId>
+                <version>${ibank.common.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- Controls Spring Cloud dependency versions -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -52,7 +59,6 @@
         <dependency>
             <groupId>com.ibank</groupId>
             <artifactId>ibank-model</artifactId>
-            <version>1.0.5</version>
         </dependency>
 
         <!-- Reactive Web (Netty) required by Spring Cloud Gateway -->
