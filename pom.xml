@@ -41,7 +41,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.ibank</groupId>
-                <artifactId>ibank-parent</artifactId>
+                <artifactId>temp</artifactId>
                 <version>${ibank.common.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
